@@ -8,7 +8,7 @@ import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
+#import seaborn as sns
 from tester import dump_classifier_and_data, test_classifier
 from feature_format import featureFormat, targetFeatureSplit
 import warnings
@@ -180,7 +180,7 @@ for train_idx, test_idx in cv:
         features_test.append( features[jj] )
         labels_test.append( labels[jj] )
 
-        #Create standar Model Scoring structure for concatenation
+#Create standard Model Scoring structure for concatenation
 def modelScoring(pred, test_labels):
     accuracy = accuracy_score(pred, test_labels)
     precision = precision_score(pred, test_labels)
