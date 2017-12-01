@@ -11726,9 +11726,7 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}
-
-@media print {
+}@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11749,7 +11747,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11773,8 +11771,7 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11788,19 +11785,19 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[312]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">IPython.core.display</span> <span class="kn">as</span> <span class="nn">di</span>
-<span class="n">di</span><span class="o">.</span><span class="n">display_html</span><span class="p">(</span><span class="s1">&#39;&lt;script&gt;jQuery(function() {if (jQuery(&quot;body.notebook_app&quot;).length == 0) { jQuery(&quot;.input_area&quot;).toggle(); jQuery(&quot;.prompt&quot;).toggle();}});&lt;/script&gt;&#39;</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">di</span><span class="o">.</span><span class="n">display_html</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;&lt;button onclick=&quot;jQuery(&#39;.input_area&#39;).toggle(); jQuery(&#39;.prompt&#39;).toggle();&quot;&gt;Toggle code&lt;/button&gt;&#39;&#39;&#39;</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">IPython.core.display</span> <span class="k">as</span> <span class="nn">di</span>
+<span class="n">di</span><span class="o">.</span><span class="n">display_html</span><span class="p">(</span><span class="s1">&#39;&lt;script&gt;jQuery(function() {if (jQuery(&quot;body.notebook_app&quot;).length == 0) { jQuery(&quot;.input_area&quot;).toggle(); jQuery(&quot;.prompt&quot;).toggle();}});&lt;/script&gt;&#39;</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">di</span><span class="o">.</span><span class="n">display_html</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;&lt;button onclick=&quot;jQuery(&#39;.input_area&#39;).toggle(); jQuery(&#39;.prompt&#39;).toggle();&quot;&gt;Toggle code&lt;/button&gt;&#39;&#39;&#39;</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../tools/&quot;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">tester</span> <span class="kn">import</span> <span class="n">dump_classifier_and_data</span><span class="p">,</span> <span class="n">test_classifier</span>
-<span class="kn">from</span> <span class="nn">feature_format</span> <span class="kn">import</span> <span class="n">featureFormat</span><span class="p">,</span> <span class="n">targetFeatureSplit</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">tester</span> <span class="k">import</span> <span class="n">dump_classifier_and_data</span><span class="p">,</span> <span class="n">test_classifier</span>
+<span class="kn">from</span> <span class="nn">feature_format</span> <span class="k">import</span> <span class="n">featureFormat</span><span class="p">,</span> <span class="n">targetFeatureSplit</span>
 </pre></div>
 
 </div>
@@ -11812,7 +11809,9 @@ div#notebook {
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 <div class="output_html rendered_html output_subarea ">
@@ -11822,7 +11821,9 @@ div#notebook {
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 <div class="output_html rendered_html output_subarea ">
@@ -11835,8 +11836,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11850,7 +11850,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[219]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;final_project_dataset.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data_file</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;final_project_dataset.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data_file</span><span class="p">:</span>
     <span class="n">data_dict</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>
 
 <span class="n">available_features</span><span class="o">=</span><span class="p">[]</span>
@@ -11859,12 +11859,12 @@ div#notebook {
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">k</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">available_features</span><span class="p">:</span>
             <span class="n">available_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">&#39;Number of employees in dataset:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_dict</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-<span class="k">print</span> <span class="s1">&#39;Number of Features in dataset:&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">available_features</span><span class="p">)</span>\
+<span class="nb">print</span> <span class="s1">&#39;Number of employees in dataset:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_dict</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="nb">print</span> <span class="s1">&#39;Number of Features in dataset:&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">available_features</span><span class="p">)</span>\
 <span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">comprised of:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">available_features</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
-<span class="k">print</span> <span class="s1">&#39;POI&#39;&#39;s: &#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span> <span class="k">if</span> <span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;poi&#39;</span><span class="p">]</span><span class="o">==</span><span class="bp">True</span><span class="p">]),</span> \
-<span class="s1">&#39;NonPOI&#39;&#39;s:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span> <span class="k">if</span> <span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;poi&#39;</span><span class="p">]</span><span class="o">==</span><span class="bp">False</span><span class="p">]),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="nb">print</span> <span class="s1">&#39;POI&#39;&#39;s: &#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span> <span class="k">if</span> <span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;poi&#39;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">]),</span> \
+<span class="s1">&#39;NonPOI&#39;&#39;s:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span> <span class="k">if</span> <span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;poi&#39;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">]),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
 <span class="k">def</span> <span class="nf">count_unique_and_null</span><span class="p">(</span><span class="n">dictionary</span><span class="p">):</span>
     <span class="n">feature_summary</span> <span class="o">=</span> <span class="p">[]</span>
@@ -11882,8 +11882,8 @@ div#notebook {
     <span class="k">return</span> <span class="n">feature_summary</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">count_unique_and_null</span><span class="p">(</span><span class="n">data_dict</span><span class="p">))</span>
-<span class="k">print</span> <span class="s1">&#39;NaN / Unique Values&#39;</span>
-<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;nans&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s1">&#39;NaN / Unique Values&#39;</span>
+<span class="nb">print</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;nans&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11895,7 +11895,9 @@ div#notebook {
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Number of employees in dataset: 146 
@@ -11912,7 +11914,9 @@ NaN / Unique Values
 </div>
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[219]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -12071,8 +12075,7 @@ NaN / Unique Values
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12086,20 +12089,20 @@ NaN / Unique Values
 <div class="prompt input_prompt">In&nbsp;[220]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Identify and Remove outliers</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Identify and Remove outliers</span>
 
 <span class="c1">#find employees with nan for all data</span>
 <span class="n">all_nan</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">person</span><span class="p">,</span> <span class="n">features</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">notNaN</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">notNaN</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">feature</span> <span class="o">!=</span> <span class="s1">&#39;poi&#39;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">val</span> <span class="o">!=</span> <span class="s1">&#39;NaN&#39;</span><span class="p">:</span>
-                <span class="n">notNaN</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">notNaN</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">break</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">notNaN</span><span class="p">:</span>
         <span class="n">all_nan</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">&#39;Users with all &#39;&#39;NaN&#39;&#39; data&#39;</span><span class="p">,</span> <span class="n">all_nan</span>
+<span class="nb">print</span> <span class="s1">&#39;Users with all &#39;&#39;NaN&#39;&#39; data&#39;</span><span class="p">,</span> <span class="n">all_nan</span>
 </pre></div>
 
 </div>
@@ -12111,7 +12114,9 @@ NaN / Unique Values
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Users with all NaN data [&#39;LOCKHART EUGENE E&#39;]
@@ -12128,7 +12133,7 @@ NaN / Unique Values
 <div class="prompt input_prompt">In&nbsp;[221]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Examine people in the data_dict to find names that do not resemble employees:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Examine people in the data_dict to find names that do not resemble employees:</span>
 <span class="n">people</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 <span class="n">c1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">30</span><span class="p">])</span>
 <span class="n">c2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">60</span><span class="p">])</span>
@@ -12137,7 +12142,7 @@ NaN / Unique Values
 <span class="n">c5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="mi">120</span><span class="p">:])</span>
 <span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39; &#39;</span><span class="p">:</span><span class="n">c1</span><span class="p">,</span> <span class="s1">&#39;  &#39;</span><span class="p">:</span><span class="n">c2</span><span class="p">,</span> <span class="s1">&#39;   &#39;</span><span class="p">:</span><span class="n">c3</span><span class="p">,</span> <span class="s1">&#39;    &#39;</span><span class="p">:</span><span class="n">c4</span><span class="p">,</span> <span class="s1">&#39;     &#39;</span><span class="p">:</span><span class="n">c5</span><span class="p">})</span>
 <span class="c1">#format nan values for printing list columnwise to display</span>
-<span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1">#highlight suspicious entries that do not resemble employee names </span>
 <span class="c1">#or employees with all NaN data</span>
 <span class="k">def</span> <span class="nf">highlight_vals</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">):</span>
@@ -12157,7 +12162,9 @@ NaN / Unique Values
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[221]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -12403,7 +12410,7 @@ NaN / Unique Values
 <div class="prompt input_prompt">In&nbsp;[222]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Remove people identified above</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Remove people identified above</span>
 <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;TOTAL&#39;</span><span class="p">,</span><span class="s1">&#39;THE TRAVEL AGENCY IN THE PARK&#39;</span><span class="p">,</span><span class="s1">&#39;LOCKHART EUGENE E&#39;</span><span class="p">]:</span>
     <span class="n">data_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
 </pre></div>
@@ -12413,8 +12420,7 @@ NaN / Unique Values
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12429,7 +12435,7 @@ NaN / Unique Values
 <div class="prompt input_prompt">In&nbsp;[223]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">computeRatio</span><span class="p">(</span> <span class="n">poi_messages</span><span class="p">,</span> <span class="n">all_messages</span> <span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">computeRatio</span><span class="p">(</span> <span class="n">poi_messages</span><span class="p">,</span> <span class="n">all_messages</span> <span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">poi_messages</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">all_messages</span><span class="p">)):</span>
         <span class="n">fraction</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">poi_messages</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">all_messages</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -12468,9 +12474,9 @@ NaN / Unique Values
 <div class="prompt input_prompt">In&nbsp;[224]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s1">&#39;max to poi ratio: &#39;</span><span class="p">,</span> <span class="nb">max</span><span class="p">([</span><span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;ratio_to_poi&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="p">])</span>
-<span class="k">print</span> <span class="s1">&#39;max from poi ratio: &#39;</span><span class="p">,</span> <span class="nb">max</span><span class="p">([</span><span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;ratio_from_poi&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="p">])</span>
-<span class="k">print</span> <span class="s1">&#39;Person with 100</span><span class="si">% e</span><span class="s1">mails sent to POI&#39;</span><span class="p">,[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span> <span class="k">if</span> <span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;ratio_to_poi&#39;</span><span class="p">]</span><span class="o">==</span><span class="mf">1.</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="s1">&#39;max to poi ratio: &#39;</span><span class="p">,</span> <span class="nb">max</span><span class="p">([</span><span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;ratio_to_poi&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="p">])</span>
+<span class="nb">print</span> <span class="s1">&#39;max from poi ratio: &#39;</span><span class="p">,</span> <span class="nb">max</span><span class="p">([</span><span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;ratio_from_poi&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="p">])</span>
+<span class="nb">print</span> <span class="s1">&#39;Person with 100</span><span class="si">% e</span><span class="s1">mails sent to POI&#39;</span><span class="p">,[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_dict</span> <span class="k">if</span> <span class="n">data_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;ratio_to_poi&#39;</span><span class="p">]</span><span class="o">==</span><span class="mf">1.</span><span class="p">]</span>
 
 <span class="n">ratiosdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">ratiosdf</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">features_list</span>
@@ -12495,7 +12501,9 @@ NaN / Unique Values
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>max to poi ratio:  1.0
@@ -12506,7 +12514,9 @@ Person with 100% emails sent to POI [&#39;HUMPHREY GENE E&#39;]
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -12985,8 +12995,7 @@ dSGEEKJGSFAXQgghasT/B2rWqShQGYMfAAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13000,9 +13009,9 @@ dSGEEKJGSFAXQgghasT/B2rWqShQGYMfAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[225]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectKBest</span>
-<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="k">import</span> <span class="n">SelectKBest</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="k">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="k">import</span> <span class="n">Pipeline</span>
 
 <span class="n">kbest</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span>
 <span class="n">gaus</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
@@ -13010,7 +13019,7 @@ dSGEEKJGSFAXQgghasT/B2rWqShQGYMfAAAAAElFTkSuQmCC
 <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 
 <span class="c1">#Get Index for kbest</span>
-<span class="n">kbest_index</span> <span class="o">=</span> <span class="n">kbest</span><span class="o">.</span><span class="n">get_support</span><span class="p">(</span><span class="n">indices</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">kbest_index</span> <span class="o">=</span> <span class="n">kbest</span><span class="o">.</span><span class="n">get_support</span><span class="p">(</span><span class="n">indices</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1">#add scores to dictionary with feature names as keys</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="p">{}</span>
@@ -13020,7 +13029,7 @@ dSGEEKJGSFAXQgghasT/B2rWqShQGYMfAAAAAElFTkSuQmCC
 <span class="c1">#print ordered scores</span>
 <span class="n">selected_features</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 <span class="n">selected_features</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;poi&#39;</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13032,7 +13041,9 @@ dSGEEKJGSFAXQgghasT/B2rWqShQGYMfAAAAAElFTkSuQmCC
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[225]:</div>
+
 
 
 
@@ -13059,8 +13070,7 @@ dtype: float64</pre>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13069,8 +13079,7 @@ dtype: float64</pre>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13083,14 +13092,14 @@ dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[304]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
-<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">StratifiedShuffleSplit</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">recall_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_recall_fscore_support</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="k">import</span> <span class="n">StratifiedShuffleSplit</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">precision_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">recall_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">f1_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">precision_recall_fscore_support</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">confusion_matrix</span>
 
 <span class="n">my_data</span> <span class="o">=</span> <span class="n">featureFormat</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="n">selected_features</span><span class="p">)</span>
 <span class="n">labels</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="n">targetFeatureSplit</span><span class="p">(</span><span class="n">my_data</span><span class="p">)</span>
@@ -13129,7 +13138,7 @@ dtype: float64</pre>
 <span class="k">def</span> <span class="nf">finalScores</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
     <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">,</span><span class="s1">&#39;Precision&#39;</span><span class="p">,</span><span class="s1">&#39;Recall&#39;</span><span class="p">,</span><span class="s1">&#39;F_Score&#39;</span><span class="p">,</span><span class="s1">&#39;Num of Predictions&#39;</span><span class="p">,</span><span class="s1">&#39;True positives&#39;</span><span class="p">,</span><span class="s1">&#39;False positives&#39;</span><span class="p">,</span><span class="s1">&#39;False negatives&#39;</span><span class="p">,</span><span class="s1">&#39;True negatives&#39;</span><span class="p">]</span>
     <span class="n">final_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-    <span class="n">final_scores</span> <span class="o">=</span> <span class="n">final_scores</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;F_Score&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">final_scores</span> <span class="o">=</span> <span class="n">final_scores</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;F_Score&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">final_scores</span>
 </pre></div>
 
@@ -13143,16 +13152,11 @@ dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[305]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Naive Bayes</span>
-<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Naive Bayes</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="k">import</span> <span class="n">GaussianNB</span>
 <span class="n">clf_nb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
 <span class="n">clf_nb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features_train</span><span class="p">,</span><span class="n">labels_train</span><span class="p">)</span>
 <span class="n">pred_nb</span> <span class="o">=</span> <span class="n">clf_nb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features_test</span><span class="p">)</span>
-<span class="c1"># targets = [&#39;Not POI&#39;, &#39;POI&#39;]</span>
-<span class="c1"># report_nb = classification_report(y_true = labels_test, y_pred = pred_nb, target_names = targets)</span>
-<span class="c1"># print report_nb</span>
-<span class="c1"># acc_nb = accuracy_score(pred_nb, labels_test)</span>
-<span class="c1"># print &#39;accuracy: &#39;, acc_nb</span>
 <span class="n">nb_scores</span> <span class="o">=</span> <span class="n">modelScoring</span><span class="p">(</span><span class="n">pred_nb</span><span class="p">,</span> <span class="n">labels_test</span><span class="p">)</span>
 </pre></div>
 
@@ -13166,16 +13170,11 @@ dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[306]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Dtree</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Dtree</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="n">clf_dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
 <span class="n">clf_dt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features_train</span><span class="p">,</span><span class="n">labels_train</span><span class="p">)</span>
 <span class="n">pred_dt</span> <span class="o">=</span> <span class="n">clf_dt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features_test</span><span class="p">)</span>
-
-<span class="c1"># report_dt = classification_report(y_true = labels_test, y_pred = pred_dt, target_names = targets)</span>
-<span class="c1"># print report_dt</span>
-<span class="c1"># acc_dt = accuracy_score(pred_dt, labels_test)</span>
-<span class="c1"># print &#39;accuracy: &#39;, acc_dt</span>
 <span class="n">dt_scores</span> <span class="o">=</span> <span class="n">modelScoring</span><span class="p">(</span><span class="n">pred_dt</span><span class="p">,</span> <span class="n">labels_test</span><span class="p">)</span>
 </pre></div>
 
@@ -13189,15 +13188,11 @@ dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[307]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Logistic Regression</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Logistic Regression</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
 <span class="n">clf_lr</span><span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
 <span class="n">clf_lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features_train</span><span class="p">,</span><span class="n">labels_train</span><span class="p">)</span>
 <span class="n">pred_lr</span> <span class="o">=</span> <span class="n">clf_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features_test</span><span class="p">)</span>
-<span class="c1"># report_lr = classification_report(y_true = labels_test, y_pred = pred_lr, target_names = targets)</span>
-<span class="c1"># print report_lr</span>
-<span class="c1"># acc_lr = accuracy_score(pred_lr, labels_test)</span>
-<span class="c1"># print &#39;accuracy: &#39;, acc_lr</span>
 <span class="n">lr_scores</span> <span class="o">=</span> <span class="n">modelScoring</span><span class="p">(</span><span class="n">pred_lr</span><span class="p">,</span> <span class="n">labels_test</span><span class="p">)</span>
 </pre></div>
 
@@ -13211,15 +13206,11 @@ dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[308]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
 <span class="n">clf_rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">clf_rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features_train</span><span class="p">,</span> <span class="n">labels_train</span><span class="p">)</span>
 <span class="n">pred_rfc</span> <span class="o">=</span> <span class="n">clf_rfc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features_test</span><span class="p">)</span>
-
-<span class="c1"># report_rfc = classification_report(y_true = labels_test, y_pred = pred_rfc, target_names = targets)</span>
-<span class="c1"># print report_rfc</span>
-<span class="c1"># acc_rfc = accuracy_score(pred_rfc, labels_test)</span>
-<span class="c1"># print &#39;accuracy: &#39;, acc_rfc</span>
 <span class="n">rfc_scores</span> <span class="o">=</span> <span class="n">modelScoring</span><span class="p">(</span><span class="n">pred_rfc</span><span class="p">,</span> <span class="n">labels_test</span><span class="p">)</span>
 </pre></div>
 
@@ -13233,7 +13224,7 @@ dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[309]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Naive Bayes&#39;</span><span class="p">:</span> <span class="n">nb_scores</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Naive Bayes&#39;</span><span class="p">:</span> <span class="n">nb_scores</span>
            <span class="p">,</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">:</span> <span class="n">dt_scores</span>
            <span class="p">,</span><span class="s1">&#39;Logistic Reg&#39;</span><span class="p">:</span> <span class="n">lr_scores</span>
            <span class="p">,</span><span class="s1">&#39;Random Forest&#39;</span><span class="p">:</span> <span class="n">rfc_scores</span><span class="p">}</span>
@@ -13249,7 +13240,9 @@ dtype: float64</pre>
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[309]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -13342,8 +13335,7 @@ dtype: float64</pre>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13353,8 +13345,7 @@ I will tune Logistic regression to see if I can enhance its performance.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13377,7 +13368,8 @@ I will tune Logistic regression to see if I can enhance its performance.</p>
 <div class="prompt input_prompt">In&nbsp;[310]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">GridSearchCV</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_iter&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
               <span class="p">,</span><span class="s1">&#39;penalty&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span> <span class="s1">&#39;l2&#39;</span><span class="p">)</span>
               <span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span> 
@@ -13400,7 +13392,7 @@ I will tune Logistic regression to see if I can enhance its performance.</p>
 <div class="prompt input_prompt">In&nbsp;[311]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">final_scores</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Logistic Reg Tuned&#39;</span><span class="p">:</span> <span class="n">logistic_reg_tuned</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_scores</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Logistic Reg Tuned&#39;</span><span class="p">:</span> <span class="n">logistic_reg_tuned</span>
            <span class="p">,</span><span class="s1">&#39;Logistic Reg Untuned&#39;</span><span class="p">:</span> <span class="n">lr_scores</span>
          <span class="p">}</span>
 <span class="n">finalScores</span><span class="p">(</span><span class="n">final_scores</span><span class="p">)</span>
@@ -13415,7 +13407,9 @@ I will tune Logistic regression to see if I can enhance its performance.</p>
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[311]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -13484,8 +13478,7 @@ I will tune Logistic regression to see if I can enhance its performance.</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13502,7 +13495,7 @@ I will tune Logistic regression to see if I can enhance its performance.</p>
 <div class="prompt input_prompt">In&nbsp;[239]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Dump your classifier, dataset, and features_list so anyone can</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Dump your classifier, dataset, and features_list so anyone can</span>
 <span class="c1">## check your results. You do not need to change anything below, but make sure</span>
 <span class="c1">## that the version of poi_id.py that you submit can be run on its own and</span>
 <span class="c1">## generates the necessary .pkl files for validating your results.</span>
