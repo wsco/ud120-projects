@@ -274,7 +274,7 @@ print '\nFinal tuned vs untuned Logistic Regression scores:\n', finalScores(fina
 ### check your results. You do not need to change anything below, but make sure
 ### that the version of poi_id.py that you submit can be run on its own and
 ### generates the necessary .pkl files for validating your results.
-clf = lr_grid
+clf = lr_grid.best_esitmator_
 
 dump_classifier_and_data(clf, my_dataset, features_list)
 print '\nclf, my_dataset, features_list dumped'
