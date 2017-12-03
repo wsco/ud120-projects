@@ -1,18 +1,14 @@
 #!/usr/bin/python
 
 import sys
-import sys
 import math
 sys.path.append("../tools/")
 import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#import seaborn as sns
 from tester import dump_classifier_and_data, test_classifier
 from feature_format import featureFormat, targetFeatureSplit
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 ###Examine Data
 with open("final_project_dataset.pkl", "r") as data_file:
@@ -65,6 +61,8 @@ with open("final_project_dataset.pkl", "r") as data_file:
     data_dict = pickle.load(data_file)
 
 ### Task 2: Remove outliers
+
+#find employees with nan for all data
 all_nan = []
 for person, features in data_dict.items():
     notNaN = False
@@ -129,23 +127,30 @@ plt.show()
 from sklearn.feature_selection import SelectKBest
 from sklearn.naive_bayes import GaussianNB
 from sklearn.pipeline import Pipeline
+def selectKbest(feat_count):
+    kbest = SelectKBest(k = feat_count)
+    gaus = GaussianNB()
+    pipeline = Pipeline(steps = [('kbest', kbest), ('gaus', gaus)])
+    pipeline.fit(features, labels)
 
-kbest = SelectKBest(k = 13)
-gaus = GaussianNB()
-pipeline = Pipeline(steps = [('kbest', kbest), ('gaus', gaus)])
-pipeline.fit(features, labels)
+    #Get Index for kbest
+    kbest_index = kbest.get_support(indices = True)
 
-#Get Index for kbest
-kbest_index = kbest.get_support(indices = True)
+    #add scores to dictionary with feature names as keys
+    scores = {}
+    for i in kbest_index:
+        scores[features_list[i + 1]] = round(kbest.scores_[i],2)
+    
+    selected_features = scores.keys()
+    selected_features.insert(0, 'poi')
+    return selected_features, scores
 
-#add scores to dictionary with feature names as keys
-scores = {}
-for i in kbest_index:
-    scores[features_list[i + 1]] = round(kbest.scores_[i],2)
-
-#print ordered scores
-selected_features = scores.keys()
-selected_features.insert(0, 'poi')
+#For Now I'm scoring each feature, when tuning 
+#I'll loop through including additional features
+#allow me to see which combination produces the 
+#best accuracy, precision, recall and consequently 
+#f1 score
+selected_features, scores = selectKbest('all')
 print '\nFeature Select K Best Scores:\n', pd.Series(scores).sort_values(ascending = False)
 
 ### Task 4: Try a varity of classifiers
@@ -155,6 +160,7 @@ print '\nFeature Select K Best Scores:\n', pd.Series(scores).sort_values(ascendi
 ### http://scikit-learn.org/stable/modules/pipeline.html
 
 # Provided to give you a starting point. Try a variety of classifiers.
+
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.cross_validation import StratifiedShuffleSplit
 from sklearn.metrics import accuracy_score
@@ -164,23 +170,29 @@ from sklearn.metrics import f1_score
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import confusion_matrix
 
-my_data = featureFormat(data_dict, selected_features)
-labels, features = targetFeatureSplit(my_data)
-#Create testing and training folds for more homogenous training and test datasets
-cv = StratifiedShuffleSplit(labels, 2000, random_state = 42)
-for train_idx, test_idx in cv: 
-    features_train = []
-    features_test  = []
-    labels_train   = []
-    labels_test    = []
-    for ii in train_idx:
-        features_train.append( features[ii] )
-        labels_train.append( labels[ii] )
-    for jj in test_idx:
-        features_test.append( features[jj] )
-        labels_test.append( labels[jj] )
+def split_data(thedata, features):
+    #print 'features used:', features
+    splitData = featureFormat(thedata, features)
+    labels, features = targetFeatureSplit(splitData)
+    #fold data
+    cv = StratifiedShuffleSplit(labels, 1000, random_state=42)
+    for train_idx, test_idx in cv: 
+        features_train = []
+        features_test  = []
+        labels_train   = []
+        labels_test    = []
+        for ii in train_idx:
+            features_train.append( features[ii] )
+            labels_train.append( labels[ii] )
+        for jj in test_idx:
+            features_test.append( features[jj] )
+            labels_test.append( labels[jj] )
+    return features_train, features_test, labels_train, labels_test
 
-#Create standard Model Scoring structure for concatenation
+#create testing and training features and labels with 
+#all selected features first then try variety in tuning later.
+features_train, features_test, labels_train, labels_test = split_data(data_dict, selected_features)        
+
 def modelScoring(pred, test_labels):
     accuracy = accuracy_score(pred, test_labels)
     precision = precision_score(pred, test_labels)
@@ -200,11 +212,10 @@ def modelScoring(pred, test_labels):
               }
     return scores
 
-#Concat algorithm scores
 def finalScores(scores):
     cols = ['Accuracy','Precision','Recall','F_Score','Num of Predictions','True positives','False positives','False negatives','True negatives']
     final_scores = pd.DataFrame(scores,cols).transpose()
-    final_scores = final_scores.sort_values('F_Score',ascending=False)
+    final_scores = final_scores.sort_values(['F_Score','Accuracy'],ascending=False)
     return final_scores
 
 ###Classifiers:
@@ -250,31 +261,68 @@ print '\nFinal Scores for each untuned Classifier:\n', finalScores(scores)
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
 #Tuning LR Classifier
+iterative_scores = {}
 from sklearn.model_selection import GridSearchCV
+
+#lots of these trials are throwing metric errors when calculating 
+#F_score from precision and recall so I've hidden the warings to shorten output a bit.
+import warnings
+warnings.filterwarnings("ignore")
+
+#try tuning with variety of kbest selected features
+for i in range(1,len(selected_features)):
+    print '\nusing ', i,' of ', len(selected_features)-1, 'available features'
+    selected_features_limited, scores= selectKbest(i)
+    #print pd.Series(scores).sort_values(ascending = False)
+    features_train, features_test, labels_train, labels_test = split_data(data_dict, selected_features_limited)
+    lr = LogisticRegression(n_jobs = -1)
+    parameters = {'max_iter':range(20, 150, 10)
+                  ,'penalty' : ('l1', 'l2')
+                  ,'C': (.1,.2,.3) 
+                  #,.4,.5,.6,.7,.8,.9,1.) these values were also tested but .2 was selected 
+                 }
+    lr_grid = GridSearchCV(lr, parameters, n_jobs = -1,scoring='f1')
+    lr_grid.fit(features_train, labels_train)
+    pred_lr_grid = lr_grid.predict(features_test)
+    logistic_reg_tuned = modelScoring(pred_lr_grid, labels_test)
+    #print 'Selected Parameters for ',i,'features:', lr_grid.best_params_
+    score_key = 'lr_'+str(i)+'_feat_tuned'
+    iterative_scores.update({score_key: logistic_reg_tuned})
+iterative_scores.update({'lr_UNTUNED': lr_scores})
+print '\nFinal tuned vs untuned Logistic Regression scores:\n', finalScores(iterative_scores)
+
+#Select Top 3 features to split data and export best estimator
+# Using 3 features as discovered above produces the same 
+#precision, and recall scores (and consequently 
+#the same f score) as using all 16 features. The accuracy 
+#is slightly lower due to fewer predictions being run on this
+# 3 featured classifier. 
+final_features, scores = selectKbest(3)
+
+print pd.Series(scores).sort_values(ascending = False)
+features_train, features_test, labels_train, labels_test = split_data(data_dict, final_features)
 lr = LogisticRegression(n_jobs = -1)
 parameters = {'max_iter':range(20, 150, 10)
               ,'penalty' : ('l1', 'l2')
               ,'C': (.1,.2,.3) 
               #,.4,.5,.6,.7,.8,.9,1.) these values were also tested but .2 was selected 
              }
-lr_grid = GridSearchCV(lr, parameters, n_jobs = -1)
+lr_grid = GridSearchCV(lr, parameters, n_jobs = -1, scoring='f1')
 lr_grid.fit(features_train, labels_train)
 
 pred_lr_grid = lr_grid.predict(features_test)
-logistic_reg_tuned = modelScoring(pred_lr_grid, labels_test)
-print "\nSelected Tuning Parameters: ", lr_grid.best_params_
+logistic_reg_3feat = modelScoring(pred_lr_grid, labels_test)
 
-#Comparing Tuned to Untuned LR Classifier
-final_scores = {'Logistic Reg Tuned': logistic_reg_tuned
-           ,'Logistic Reg Untuned': lr_scores
-         }
-print '\nFinal tuned vs untuned Logistic Regression scores:\n', finalScores(final_scores)
+print "Selected Parameters:", lr_grid.best_params_
+
+clf = lr_grid.best_estimator_
+
 
 ### Task 6: Dump your classifier, dataset, and features_list so anyone can
 ### check your results. You do not need to change anything below, but make sure
 ### that the version of poi_id.py that you submit can be run on its own and
 ### generates the necessary .pkl files for validating your results.
-clf = lr_grid.best_esitmator_
+
 
 dump_classifier_and_data(clf, my_dataset, features_list)
 print '\nclf, my_dataset, features_list dumped'
