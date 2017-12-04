@@ -169,13 +169,19 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import confusion_matrix
+from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.pipeline import Pipeline
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import MinMaxScaler
 
-def split_data(thedata, features):
-    #print 'features used:', features
-    splitData = featureFormat(thedata, features)
-    labels, features = targetFeatureSplit(splitData)
-    #fold data
-    cv = StratifiedShuffleSplit(labels, 1000, random_state=42)
+def split_data(dataset, feature_list):
+    data = featureFormat(dataset, feature_list, sort_keys = True)
+    labels, features = targetFeatureSplit(data)
+    cv = StratifiedShuffleSplit(labels, 1000, random_state = 42)
+    true_negatives = 0
+    false_negatives = 0
+    true_positives = 0
+    false_positives = 0
     for train_idx, test_idx in cv: 
         features_train = []
         features_test  = []
@@ -191,8 +197,12 @@ def split_data(thedata, features):
 
 #create testing and training features and labels with 
 #all selected features first then try variety in tuning later.
-features_train, features_test, labels_train, labels_test = split_data(data_dict, selected_features)        
+# features_train, features_test, labels_train, labels_test = split_data(data_dict, selected_features)        
+from sklearn.model_selection import train_test_split
 
+features_train, features_test, labels_train, labels_test = \
+    train_test_split(features, labels, test_size=0.3, random_state=42)
+    
 def modelScoring(pred, test_labels):
     accuracy = accuracy_score(pred, test_labels)
     precision = precision_score(pred, test_labels)
@@ -247,10 +257,18 @@ clf_rfc.fit(features_train, labels_train)
 pred_rfc = clf_rfc.predict(features_test)
 rfc_scores = modelScoring(pred_rfc, labels_test)
 
+#K Nearest Neighbors Classifier
+from sklearn.neighbors import KNeighborsClassifier
+clf_knn = KNeighborsClassifier()
+clf_knn.fit(features_train, labels_train)
+pred_knn = clf_knn.predict(features_test)
+knn_scores = modelScoring(pred_knn, labels_test)
+
 scores = {'Naive Bayes': nb_scores
            ,'Decision Tree': dt_scores
            ,'Logistic Reg': lr_scores
-           ,'Random Forest': rfc_scores}
+           ,'Random Forest': rfc_scores
+           ,'K Nearest': knn_scores}
 print '\nFinal Scores for each untuned Classifier:\n', finalScores(scores)
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
@@ -260,63 +278,81 @@ print '\nFinal Scores for each untuned Classifier:\n', finalScores(scores)
 ### stratified shuffle split cross validation. For more info: 
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
-#Tuning LR Classifier
-iterative_scores = {}
+#Naive Bayes Tuning
+from sklearn.model_selection import GridSearchCV
+pipeline = Pipeline([('scaler', MinMaxScaler())
+                    ,('kbest', SelectKBest())
+                    ,('clf', GaussianNB())
+                   ])
+
+kFeatures = range(1,len(features_list))
+parameters = {'kbest__k': kFeatures}
+nb_grid = GridSearchCV(estimator = pipeline
+                      ,param_grid = parameters
+                      ,scoring = 'f1'
+                      ,cv = 10)
+print '\nTraining NB Classifier\n'
+nb_grid.fit(features_train, labels_train)
+
+clf = nb_grid.best_estimator_
+print '\nPredicting with NB Best Estimator\n'
+pred = clf.predict(features_test)
+print '\nTesting NB Classifier:\n', test_classifier(clf, my_dataset, features_list)
+
+#Logistic Regression Tuning
 from sklearn.model_selection import GridSearchCV
 
-#lots of these trials are throwing metric errors when calculating 
-#F_score from precision and recall so I've hidden the warings to shorten output a bit.
-import warnings
-warnings.filterwarnings("ignore")
+pipeline = Pipeline([('scaler', MinMaxScaler())
+                    ,('kbest', SelectKBest())
+                    ,('clf', LogisticRegression())
+                   ])
 
-#try tuning with variety of kbest selected features
-for i in range(1,len(selected_features)):
-    print '\nusing ', i,' of ', len(selected_features)-1, 'available features'
-    selected_features_limited, scores= selectKbest(i)
-    #print pd.Series(scores).sort_values(ascending = False)
-    features_train, features_test, labels_train, labels_test = split_data(data_dict, selected_features_limited)
-    lr = LogisticRegression(n_jobs = -1)
-    parameters = {'max_iter':range(20, 150, 10)
-                  ,'penalty' : ('l1', 'l2')
-                  ,'C': (.1,.2,.3) 
-                  #,.4,.5,.6,.7,.8,.9,1.) these values were also tested but .2 was selected 
-                 }
-    lr_grid = GridSearchCV(lr, parameters, n_jobs = -1,scoring='f1')
-    lr_grid.fit(features_train, labels_train)
-    pred_lr_grid = lr_grid.predict(features_test)
-    logistic_reg_tuned = modelScoring(pred_lr_grid, labels_test)
-    #print 'Selected Parameters for ',i,'features:', lr_grid.best_params_
-    score_key = 'lr_'+str(i)+'_feat_tuned'
-    iterative_scores.update({score_key: logistic_reg_tuned})
-iterative_scores.update({'lr_UNTUNED': lr_scores})
-print '\nFinal tuned vs untuned Logistic Regression scores:\n', finalScores(iterative_scores)
-
-#Select Top 3 features to split data and export best estimator
-# Using 3 features as discovered above produces the same 
-#precision, and recall scores (and consequently 
-#the same f score) as using all 16 features. The accuracy 
-#is slightly lower due to fewer predictions being run on this
-# 3 featured classifier. 
-final_features, scores = selectKbest(3)
-
-print pd.Series(scores).sort_values(ascending = False)
-features_train, features_test, labels_train, labels_test = split_data(data_dict, final_features)
-lr = LogisticRegression(n_jobs = -1)
-parameters = {'max_iter':range(20, 150, 10)
-              ,'penalty' : ('l1', 'l2')
-              ,'C': (.1,.2,.3) 
-              #,.4,.5,.6,.7,.8,.9,1.) these values were also tested but .2 was selected 
+kFeatures = range(1,len(features_list))
+parameters = {'kbest__k': kFeatures
+#              ,'clf__C':(.02,.04,.06,.08,.1,.12,.14,.16,.18,.2)
+             ,'clf__C' : [1,1.1,1.2,1.3,1.4, 1.5,1.6,1.7,1.8,1.9,2] 
+             ,'clf__solver':('newton-cg','lbfgs','liblinear','sag')
              }
-lr_grid = GridSearchCV(lr, parameters, n_jobs = -1, scoring='f1')
+print '\ngrid search LR\n'
+lr_grid = GridSearchCV(estimator = pipeline
+                      ,param_grid = parameters
+                      ,scoring = 'f1'
+                      ,cv = 10)
+print '\nTraining LR Classifier\n'
 lr_grid.fit(features_train, labels_train)
 
-pred_lr_grid = lr_grid.predict(features_test)
-logistic_reg_3feat = modelScoring(pred_lr_grid, labels_test)
-
-print "Selected Parameters:", lr_grid.best_params_
-
 clf = lr_grid.best_estimator_
+print '\nPredicting with LR Best Estimator\n'
+pred = clf.predict(features_test)
+print '\nTesting LR Classifier:\n', test_classifier(clf, my_dataset, features_list)
 
+#K Nearest Neighbors Tuning
+from sklearn.model_selection import GridSearchCV
+
+pipeline = Pipeline([('scaler', MinMaxScaler())
+                    ,('kbest', SelectKBest())
+                    ,('clf', KNeighborsClassifier())
+                   ])
+
+kFeatures = range(1,len(features_list))
+parameters = {'kbest__k': kFeatures
+              ,'clf__n_neighbors':range(2,10)
+              ,'clf__weights':['uniform','distance']
+             }
+print '\ngrid search KNN\n'
+knn_grid = GridSearchCV(estimator = pipeline
+                      ,param_grid = parameters
+                      ,scoring = 'f1'
+                      ,cv = 10
+                       )
+
+print '\nTraining KNN Classifier\n'
+knn_grid.fit(features_train, labels_train)
+
+clf = knn_grid.best_estimator_
+print '\nPredicting with KNN Best Estimator\n'
+pred = clf.predict(features_test)
+print '\nTesting KNN Classifier:\n', test_classifier(clf, my_dataset, features_list)
 
 ### Task 6: Dump your classifier, dataset, and features_list so anyone can
 ### check your results. You do not need to change anything below, but make sure
